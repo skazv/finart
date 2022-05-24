@@ -28,9 +28,9 @@ class BudgetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if UserDefaultsManager.firstLoadSettings() == true {
-//            firstLoad()
-//        }
+        if UserDefaultsManager.firstLoadSettings() == true {
+            firstLoad()
+        }
         firstLoad()
         presenter?.viewDidLoad()
         budgetView.incomeView.budgetViewDelegate = self
@@ -169,50 +169,50 @@ extension BudgetViewController {
     
     private func firstLoad() {
         let onboarding = OnboardingViewController()
-//        guard let budget = try? CoreDataManager.createBudget(name: "Личный бюджет",
-//                                                             icon: IconLib.house.rawValue,
-//                                                             reportDay: giveAppCreatingDate(),
-//                                                             currency: "RUB") else { return }
-//        guard let income = try? CoreDataManager.createIncomeByBudget(budget: budget,
-//                                                                     name: "Зарплата",
-//                                                                     count: 40000,
-//                                                                     icon: IconLib.briefcase.rawValue,
-//                                                                     currency: "RUB") else { return }
-//        guard let cardAccount = try? CoreDataManager.createAccountByBudget(budget: budget,
-//                                                                     name: "Карта",
-//                                                                     count: 0,
-//                                                                       icon: IconLib.creditCard.rawValue,
-//                                                                           currency: "RUB") else { return }
-//        guard let cashAccount = try? CoreDataManager.createAccountByBudget(budget: budget,
-//                                                                     name: "Наличные",
-//                                                                     count: 0,
-//                                                                           icon: IconLib.banknote.rawValue,
-//                                                                           currency: "RUB") else { return }
-//
-//        guard let transportSpending = try? CoreDataManager.createSpendingByBudget(budget: budget,
-//                                                                     name: "Транспорт",
-//                                                                     count: 3000,
-//                                                                         icon: IconLib.bus.rawValue,
-//                                                                                  currency: "RUB") else { return }
-//        guard let foodSpending = try? CoreDataManager.createSpendingByBudget(budget: budget,
-//                                                                     name: "Еда",
-//                                                                     count: 8000,
-//                                                                             icon: IconLib.forkKnife.rawValue,
-//                                                                             currency: "RUB") else { return }
-//        guard let shoppingSpending = try? CoreDataManager.createSpendingByBudget(budget: budget,
-//                                                                     name: "Покупки",
-//                                                                     count: 10000,
-//                                                                             icon: IconLib.cart.rawValue,
-//                                                                                 currency: "RUB") else { return }
-//
-//
-//        reloadIncomeView(with: [incomeCDtoIncomeVM(incomeCD: income)])
-//        reloadAccountView(with: [accountCDtoAccountVM(accountCD: cardAccount),
-//                                 accountCDtoAccountVM(accountCD: cashAccount),])
-//        reloadSpendingView(with: [spendingCDtoSpendingVM(spendingCD: transportSpending),
-//                                  spendingCDtoSpendingVM(spendingCD: foodSpending),
-//                                  spendingCDtoSpendingVM(spendingCD: shoppingSpending),
-//        ])
+        guard let budget = try? CoreDataManager.createBudget(name: "Личный бюджет",
+                                                             icon: IconLib.house.rawValue,
+                                                             reportDay: giveAppCreatingDate(),
+                                                             currency: "RUB") else { return }
+        guard let income = try? CoreDataManager.createIncomeByBudget(budget: budget,
+                                                                     name: "Зарплата",
+                                                                     count: 40000,
+                                                                     icon: IconLib.briefcase.rawValue,
+                                                                     currency: "RUB") else { return }
+        guard let cardAccount = try? CoreDataManager.createAccountByBudget(budget: budget,
+                                                                     name: "Карта",
+                                                                     count: 0,
+                                                                       icon: IconLib.creditCard.rawValue,
+                                                                           currency: "RUB") else { return }
+        guard let cashAccount = try? CoreDataManager.createAccountByBudget(budget: budget,
+                                                                     name: "Наличные",
+                                                                     count: 0,
+                                                                           icon: IconLib.banknote.rawValue,
+                                                                           currency: "RUB") else { return }
+
+        guard let transportSpending = try? CoreDataManager.createSpendingByBudget(budget: budget,
+                                                                     name: "Транспорт",
+                                                                     count: 3000,
+                                                                         icon: IconLib.bus.rawValue,
+                                                                                  currency: "RUB") else { return }
+        guard let foodSpending = try? CoreDataManager.createSpendingByBudget(budget: budget,
+                                                                     name: "Еда",
+                                                                     count: 8000,
+                                                                             icon: IconLib.forkKnife.rawValue,
+                                                                             currency: "RUB") else { return }
+        guard let shoppingSpending = try? CoreDataManager.createSpendingByBudget(budget: budget,
+                                                                     name: "Покупки",
+                                                                     count: 10000,
+                                                                             icon: IconLib.cart.rawValue,
+                                                                                 currency: "RUB") else { return }
+
+
+        reloadIncomeView(with: [incomeCDtoIncomeVM(incomeCD: income)])
+        reloadAccountView(with: [accountCDtoAccountVM(accountCD: cardAccount),
+                                 accountCDtoAccountVM(accountCD: cashAccount),])
+        reloadSpendingView(with: [spendingCDtoSpendingVM(spendingCD: transportSpending),
+                                  spendingCDtoSpendingVM(spendingCD: foodSpending),
+                                  spendingCDtoSpendingVM(spendingCD: shoppingSpending),
+        ])
         
         navigationController?.present(onboarding, animated: true)
     }
