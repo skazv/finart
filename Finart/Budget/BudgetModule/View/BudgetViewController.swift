@@ -31,7 +31,6 @@ class BudgetViewController: UIViewController {
         if UserDefaultsManager.firstLoadSettings() == true {
             firstLoad()
         }
-        firstLoad()
         presenter?.viewDidLoad()
         budgetView.incomeView.budgetViewDelegate = self
         budgetView.accountView.budgetViewDelegate = self
