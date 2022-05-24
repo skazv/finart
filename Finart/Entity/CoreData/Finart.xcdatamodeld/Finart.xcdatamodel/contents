@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AccountCD" representedClassName="AccountCD" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BudgetCD" inverseName="accounts" inverseEntity="BudgetCD"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionCD" inverseName="accountTransaction" inverseEntity="TransactionCD"/>
+        <relationship name="transactionsDestination" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionCD" inverseName="accountDestination" inverseEntity="TransactionCD"/>
+    </entity>
+    <entity name="BudgetCD" representedClassName="BudgetCD" syncable="YES">
+        <attribute name="backgroundColor" optional="YES" attributeType="String"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="incomeBackgroundColor" optional="YES" attributeType="String"/>
+        <attribute name="incomesColor" optional="YES" attributeType="String"/>
+        <attribute name="isMain" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="reportDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="spendingBackgroundColor" optional="YES" attributeType="String"/>
+        <attribute name="spendingsColor" optional="YES" attributeType="String"/>
+        <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AccountCD" inverseName="budget" inverseEntity="AccountCD"/>
+        <relationship name="incomes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IncomeCD" inverseName="budget" inverseEntity="IncomeCD"/>
+        <relationship name="spendings" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SpendingCD" inverseName="budget" inverseEntity="SpendingCD"/>
+    </entity>
+    <entity name="IncomeCD" representedClassName="IncomeCD" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="planCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BudgetCD" inverseName="incomes" inverseEntity="BudgetCD"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionCD" inverseName="incomeTransaction" inverseEntity="TransactionCD"/>
+    </entity>
+    <entity name="SpendingCD" representedClassName="SpendingCD" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="planCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BudgetCD" inverseName="spendings" inverseEntity="BudgetCD"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionCD" inverseName="spendingTransaction" inverseEntity="TransactionCD"/>
+    </entity>
+    <entity name="TransactionCD" representedClassName="TransactionCD" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="identificator" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="secondCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="accountDestination" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountCD" inverseName="transactionsDestination" inverseEntity="AccountCD"/>
+        <relationship name="accountTransaction" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountCD" inverseName="transactions" inverseEntity="AccountCD"/>
+        <relationship name="incomeTransaction" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IncomeCD" inverseName="transactions" inverseEntity="IncomeCD"/>
+        <relationship name="spendingTransaction" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpendingCD" inverseName="transactions" inverseEntity="SpendingCD"/>
+    </entity>
+    <elements>
+        <element name="AccountCD" positionX="-65.3394775390625" positionY="-126.6915283203125" width="128" height="164"/>
+        <element name="BudgetCD" positionX="-258.7360229492188" positionY="-47.17256164550781" width="128" height="239"/>
+        <element name="IncomeCD" positionX="-79.9957275390625" positionY="-32.13113403320312" width="128" height="149"/>
+        <element name="SpendingCD" positionX="-93.90264892578125" positionY="47.13546752929688" width="128.3203125" height="149"/>
+        <element name="TransactionCD" positionX="104.8994140625" positionY="-47.19564819335938" width="130.63623046875" height="179"/>
+    </elements>
+</model>
